@@ -1,7 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-import { db } from './firebase';
-import {doc, setDoc} from "firebase/firestore";
+
+const admin = require("firebase-admin");
+
+// Initialize Firebase Admin SDK with the downloaded JSON key file
+const serviceAccount = require("./key.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+
+// Initialize Firestore
+const db = admin.firestore();
 
 const app = express();
 
@@ -17,18 +26,32 @@ app.get("/admin", (req, res) => {
     res.sendFile(__dirname + '/admin.html');
 });
 
+app.get("/css", (req, res) => {
+    res.sendFile(__dirname + "/styles.css")
+})
+
+app.get("/firebase", (req, res) => {
+    res.sendFile(__dirname + "/firebase.js")
+})
+
 app.post("/add", async (req, res) => {
     const name = req.body.name;
-    const roll_no = req.body.roll_no;
+    const roll_no = req.body.rno;
 
-    try {
-        await setDoc(doc(db, "students", roll_no), {
-            roll_no: roll_no,
-            name: name
-        })
-    } catch (e) {
-        console.log(e);
+    const object = {
+        name: name,
+        roll_no: roll_no
     }
+    
+    const newDocRef = db.collection("students").doc(); // Generates a new document ID
+
+    newDocRef.set(object)
+        .then(() => {
+            console.log("Document added!");
+        })
+        .catch(error => {
+            console.error("Error adding document: ", error);
+    });
 })
 
 
