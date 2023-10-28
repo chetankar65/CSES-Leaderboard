@@ -28,6 +28,18 @@ body {
 
 }
 
+form {
+    flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+}
+
+.legend {
+    padding: 7px;
+    border-radius: 12px;
+    background-color: black;
+}
+
 label {
     font-family: "Ubuntu Mono";
     font-weight: bold;
