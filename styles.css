@@ -11,22 +11,28 @@ body {
     background-attachment: fixed;
     display: flex;
     justify-content: center;
-    gap: 20em;
+    gap: 12em;
     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 }
 
 .strip {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     font-family: "Roboto Slab";
-    min-width: 85px;
+    min-width: 90px;
     font-size: 50px;
     font-weight: bold;
     align-self: stretch;
-    background-color: black;
+    background-image: url(black-pattern.png);
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.strip:hover {
+    background-image: url(design.png);
+    color: black;    
 }
 
 .main {
@@ -38,12 +44,12 @@ body {
 }
 
 .header {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-family: "Roboto Slab";
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bolder;
     border-radius: 4px;
-    background-color: white;
+    background-image: url(design.png);
     padding: 6px 10px;
     box-shadow: 12px 13px 2px black;
 }
@@ -53,7 +59,7 @@ body {
     margin: 0em 2em;
     background-color: rgba(255, 255, 255, 0.695);
     border-radius: 12px;
-    padding: 2em;
+    padding: 2em 2.5em;
 }
 
 form {
@@ -72,13 +78,13 @@ form {
 .legend {
     align-self: stretch;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 8px 12px;
+    padding: 12px 16px;
     border-radius: 1em;
-    background-color: black;
+    background-image: url(black-pattern.png);
 }
 
 label {
-    font-size: 17px;
+    font-size: 19px;
     font-family: "Ubuntu Mono";
     font-weight: bold;
     color: white;
@@ -87,9 +93,9 @@ label {
 input {
     height: 1.5em;
     border-radius: 4px;
-    padding: 5px;
-    border: 1px solid black;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 7px 8px;
+    border: 1px solid grey;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     background-color: rgb(255, 255, 255);
 }
 
@@ -102,12 +108,13 @@ input[name="points"]{
 }
 
 button[type="submit"] {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 15px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border-radius: 12px;
     border: 0px;
     color: white;
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 12px 18px;
     background-image: linear-gradient(135deg, #2b6082 0%, #8082a3 100%);
 }
 
