@@ -1,39 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 html {
     height: 100%;
 }
-body {
-    height: 100%;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 
 body {
+    margin: 0;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
-    flex-direction: column;
-    gap: 2em;
-    align-items: center;
     justify-content: center;
-    justify-content: center;
+    gap: 20em;
     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 }
 
+.strip {
+    font-family: "Roboto Slab";
+    min-width: 85px;
+    font-size: 50px;
+    font-weight: bold;
+    align-self: stretch;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    margin-bottom: 30px;
+    font-family: "Roboto Slab";
+    font-size: 40px;
+    font-weight: bolder;
+    border-radius: 4px;
+    background-color: white;
+    padding: 6px 10px;
+    box-shadow: 12px 13px 2px black;
+}
+
 .container {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     margin: 0em 2em;
-    background-color: rgba(255, 255, 255, 0.764);
+    background-color: rgba(255, 255, 255, 0.695);
     border-radius: 12px;
     padding: 2em;
+}
 
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.25em;
+}
+
+.details {
+    display: flex;
+    gap: 15px;
+}
+
+.legend {
+    align-self: stretch;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 8px 12px;
+    border-radius: 1em;
+    background-color: black;
 }
 
 label {
+    font-size: 17px;
     font-family: "Ubuntu Mono";
     font-weight: bold;
     color: white;
 }
 
 input {
+    height: 1.5em;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     background-color: rgb(255, 255, 255);
+}
+
+input[name="rno"]{
+    width: 50px;
+}
+
+input[name="points"]{
+    width: 55px;
+}
+
+button[type="submit"] {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 12px;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    background-image: linear-gradient(135deg, #2b6082 0%, #8082a3 100%);
+}
+
+button[type="submit"]:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+    background-image: linear-gradient(135deg, #4e7b97 0%, #8082a3 100%);
 }

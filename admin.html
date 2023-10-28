@@ -7,22 +7,42 @@
     <link rel="stylesheet" href="/css">
 </head>
 <body>
-    <div class="container">
-        <form action="/add" method="post">
-            <div class="legend"><label for="reg">Register: </label></div>
-            <input type="text" name="name" placeholder="Full Name">
-            <input type="text" name="rno" placeholder="Roll No.">
-            <button>Submit</button>
-        </form>
+    <div class="strip">
+        <div class="alpha">G</div>
+        <div class="alpha">L</div>
+        <div class="alpha">A</div>
+        <div class="alpha">M</div>
+        <div class="alpha">M</div>
     </div>
-    <div class="container">
-        <form action="https://httpbin.org/post" method="get">
-            <label for="reg">Add: </label>
-            <input type="text" name="name" placeholder="Full Name">
-            <label for="points">Points: </label>
-            <input type="number" name="points" placeholder="Points">
-            <button type="submit">Submit</button>
-        </form>
+    <div class="main">
+        <div class="header">ADMIN DASHBOARD</div>
+        <div class="container">
+            <form action="/add" method="post">
+                <div class="legend"><label for="name">Register</label></div>
+                <div class="details">
+                    <input type="text" id="name" name="name" placeholder="Full Name">
+                    <input type="text" id="rno" name="rno" placeholder="Roll No.">
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        <div class="container">
+            <form action="https://httpbin.org/post" method="get">
+                <div class="legend"><label for="username">Add Points</label></div>
+                <div class="details">
+                    <input type="text" id="username" name="name" placeholder="Full Name">
+                    <input type="number" id="points" name="points" placeholder="Points">
+                </div>
+                <button type="submit">Increase</button>
+            </form>
+        </div>
+    </div>
+    <div class="strip">
+        <div class="alpha">N</div>
+        <div class="alpha">I</div>
+        <div class="alpha">G</div>
+        <div class="alpha">H</div>
+        <div class="alpha">T</div>
     </div>
 </body>
 </html>

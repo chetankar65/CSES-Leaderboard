@@ -34,13 +34,14 @@ app.get("/firebase", (req, res) => {
     res.sendFile(__dirname + "/firebase.js")
 })
 
-app.post("/add", async (req, res) => {
+app.post("/add", (req, res) => {
     const name = req.body.name;
     const roll_no = req.body.rno;
 
     const object = {
         name: name,
-        roll_no: roll_no
+        roll_no: roll_no,
+        points: 0
     }
     
     const newDocRef = db.collection("students").doc(); // Generates a new document ID
@@ -48,10 +49,39 @@ app.post("/add", async (req, res) => {
     newDocRef.set(object)
         .then(() => {
             console.log("Document added!");
+            res.redirect("/admin")
         })
         .catch(error => {
-            console.error("Error adding document: ", error);
+            res.status(500).send("Error")
     });
+})
+
+app.get("/getData", async (req, res) => {
+    /*
+    const docRef = db.collection("students");
+
+    docRef.get()
+        .then(doc => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                console.log("No such document!");
+            }
+        })
+        .catch(error => {
+            console.error("Error getting document: ", error);
+        });
+
+        */
+
+        const studentsRef = db.collection("students");
+        const snapshot = await studentsRef.get()
+
+        snapshot.forEach(doc => {
+            console.log(doc.id, '=>', doc.data())
+        })
+    
+        res.send("Msg")
 })
 
 
