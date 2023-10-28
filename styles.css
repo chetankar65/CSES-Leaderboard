@@ -22,7 +22,7 @@ body {
     font-size: 50px;
     font-weight: bold;
     align-self: stretch;
-    background-image: url(black-pattern.png);
+    background-image: url("/black_pattern");
     color: white;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@ body {
 }
 
 .strip:hover {
-    background-image: url(design.png);
+    background-image: url("/design");
     color: black;    
 }
 
@@ -49,7 +49,7 @@ body {
     font-size: 50px;
     font-weight: bolder;
     border-radius: 4px;
-    background-image: url(design.png);
+    background-image: url("/design");
     padding: 6px 10px;
     box-shadow: 12px 13px 2px black;
 }
@@ -80,7 +80,7 @@ form {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 12px 16px;
     border-radius: 1em;
-    background-image: url(black-pattern.png);
+    background-image: url("/black_pattern");
 }
 
 label {

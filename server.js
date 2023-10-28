@@ -34,6 +34,14 @@ app.get("/firebase", (req, res) => {
     res.sendFile(__dirname + "/firebase.js")
 })
 
+app.get("/black_pattern", (req, res) => {
+    res.sendFile(__dirname + "/black-pattern.png")
+})
+
+app.get("/design", (req, res) => {
+    res.sendFile(__dirname + "/design.png")
+})
+
 app.post("/add", (req, res) => {
     const name = req.body.name;
     const roll_no = req.body.rno;
