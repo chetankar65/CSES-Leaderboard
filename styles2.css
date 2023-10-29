@@ -73,6 +73,7 @@ body {
 
 .top-5:hover {
     transform: scale(1.1);
+    transition: 0.3s;
 }
 
 .top-5-container {
