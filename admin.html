@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSES Leaderboard | Admin</title>
     <link rel="stylesheet" href="/css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
 <body>
     <div class="strip">
@@ -17,23 +20,23 @@
     <div class="main">
         <div class="header">ADMIN DASHBOARD</div>
         <div class="container">
-            <form action="/add" method="post">
+            <form>
                 <div class="legend"><label for="name">Register</label></div>
                 <div class="details">
                     <input type="text" id="name" name="name" placeholder="Full Name">
                     <input type="text" id="rno" name="rno" placeholder="Roll No.">
                 </div>
-                <button type="submit">Add</button>
+                <button type="submit" id="add">Add</button>
             </form>
         </div>
         <div class="container">
-            <form action="increase" method="post">
+            <form>
                 <div class="legend"><label for="username">Add Points</label></div>
                 <div class="details">
                     <input type="text" id="username" name="name" placeholder="Roll No.">
                     <input type="number" id="points" name="points" placeholder="Points" min="1">
                 </div>
-                <button type="submit">Increase</button>
+                <button type="submit" id="increase">Increase</button>
             </form>
         </div>
     </div>
@@ -45,4 +48,112 @@
         <div class="alpha">T</div>
     </div>
 </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    /*Adding part*/
+    const addBtn = document.getElementById("add")
+
+    addBtn.addEventListener("click", (e) => {
+        e.preventDefault()
+        const name_field = document.getElementById("name").value;
+        const rno_field = document.getElementById("rno").value;
+
+        if (name_field != "" && rno_field != "") {
+            axios.post("/add", {
+                name: name_field,
+                rno: rno_field
+            })
+            .then((response) => {
+                //console.log("Success")
+                if (response.status == 200) {
+                    Toastify({
+                        text: "Student registered!",
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(135deg, #2b6082 0%, #8082a3 100%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
+                } else {
+                    Toastify({
+                        text: "Some issue!",
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(98.3deg, rgb(0, 0, 0) 10.6%, rgb(255, 0, 0) 97.7%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
+                }
+            })
+        }
+    })
+    ///////////
+
+    /*Adding part*/
+    const increaseBtn = document.getElementById("increase")
+
+    increaseBtn.addEventListener("click", (e) => {
+        e.preventDefault()
+        const rno = document.getElementById("username").value;
+        const points = document.getElementById("points").value;
+
+
+        if (rno != "" && points > 0) {
+            axios.post("/increase", {
+                name: rno,
+                points: points
+            })
+            .then((response) => {
+                if (response.status == 200) {
+                    Toastify({
+                        text: `${points} points added!`,
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(135deg, #2b6082 0%, #8082a3 100%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
+                } 
+            })
+            .catch(function (error) {
+                if (error.response.status == 400) {
+                    Toastify({
+                        text: "Student is not registered",
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(98.3deg, rgb(0, 0, 0) 10.6%, rgb(255, 0, 0) 97.7%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
+                }
+            })
+
+        }
+    })
+    ///////////
+</script>
 </html>

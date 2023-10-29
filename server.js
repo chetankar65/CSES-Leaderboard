@@ -13,6 +13,8 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const app = express();
+app.use(express.json());
+
 
 urlEncodingObject = bodyParser.urlencoded({extended:false});
 
@@ -52,12 +54,12 @@ app.post("/add", (req, res) => {
         points: 0
     }
     
-    const newDocRef = db.collection("students").doc(roll_no); // Generates a new document ID
+    const newDocRef = db.collection("students").doc(roll_no.toUpperCase()); // Generates a new document ID
 
     newDocRef.set(object)
         .then(() => {
-            console.log("Document added!");
-            res.redirect("/admin")
+            //res.redirect("/admin")
+            res.status(200).send("Success!")
         })
         .catch(error => {
             res.status(500).send("Error")
@@ -71,55 +73,43 @@ app.post("/increase", async (req, res) => {
 
     const newDocRef = db.collection("students").doc(roll_no);
     const doc = await newDocRef.get(); 
-    console.log(doc.data());
 
-    var current_points = doc.data().points;
-    console.log(current_points)
-    current_points += Number(points);
+    if (doc.data() != undefined) {
+        var current_points = doc.data().points;
+        current_points += Number(points);
 
-    const object = {
-        name: doc.data().name,
-        roll_no: doc.data().roll_no,
-        points: current_points
+        const object = {
+            name: doc.data().name,
+            roll_no: doc.data().roll_no,
+            points: current_points
+        }
+
+        newDocRef.set(object)
+            .then(() => {
+                res.status(200).send("Success!")
+            })
+            .catch(error => {
+                res.status(500).send("Error")
+        });
+    } else {
+        res.status(400).send("Invalid argument!")
     }
-
-    newDocRef.set(object)
-        .then(() => {
-            console.log("Points updated!");
-            res.redirect("/admin")
-        })
-        .catch(error => {
-            res.status(500).send("Error")
-    });
 
 })
 
 app.get("/getData", async (req, res) => {
-    /*
-    const docRef = db.collection("students");
+    const studentsRef = db.collection("students");
+    const snapshot = await studentsRef.orderBy('points', 'desc').get()
 
-    docRef.get()
-        .then(doc => {
-            if (doc.exists) {
-                console.log("Document data:", doc.data());
-            } else {
-                console.log("No such document!");
-            }
-        })
-        .catch(error => {
-            console.error("Error getting document: ", error);
-        });
+    let returnedArray = [];
 
-        */
+    snapshot.forEach(doc => {
+        //console.log(doc.id, '=>', doc.data())
+        returnedArray.push(doc.data());
+    })
 
-        const studentsRef = db.collection("students");
-        const snapshot = await studentsRef.get()
-
-        snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data())
-        })
     
-        res.send("Msg")
+    res.status(200).send(returnedArray)
 })
 
 
