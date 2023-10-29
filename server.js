@@ -11,7 +11,6 @@ admin.initializeApp({
 
 // Initialize Firestore
 const db = admin.firestore();
-
 const app = express();
 app.use(express.json());
 
