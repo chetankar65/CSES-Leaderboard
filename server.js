@@ -48,11 +48,11 @@ app.post("/add", (req, res) => {
 
     const object = {
         name: name,
-        roll_no: roll_no,
+        roll_no: roll_no.toUpperCase(),
         points: 0
     }
     
-    const newDocRef = db.collection("students").doc(); // Generates a new document ID
+    const newDocRef = db.collection("students").doc(roll_no); // Generates a new document ID
 
     newDocRef.set(object)
         .then(() => {
@@ -62,6 +62,36 @@ app.post("/add", (req, res) => {
         .catch(error => {
             res.status(500).send("Error")
     });
+})
+
+app.post("/increase", async (req, res) => {
+    const points = req.body.points;
+    var roll_no = req.body.name;
+    roll_no = roll_no.toUpperCase();
+
+    const newDocRef = db.collection("students").doc(roll_no);
+    const doc = await newDocRef.get(); 
+    console.log(doc.data());
+
+    var current_points = doc.data().points;
+    console.log(current_points)
+    current_points += Number(points);
+
+    const object = {
+        name: doc.data().name,
+        roll_no: doc.data().roll_no,
+        points: current_points
+    }
+
+    newDocRef.set(object)
+        .then(() => {
+            console.log("Points updated!");
+            res.redirect("/admin")
+        })
+        .catch(error => {
+            res.status(500).send("Error")
+    });
+
 })
 
 app.get("/getData", async (req, res) => {
