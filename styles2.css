@@ -71,6 +71,10 @@ body {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
+.top-5:hover {
+    transform: scale(1.1);
+}
+
 .top-5-container {
     display: flex;
     flex-direction: column;
