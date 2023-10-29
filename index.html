@@ -14,11 +14,14 @@
     </div>
 </body>
 <script>
-    axios
-        .get("/getData")
-        .then(function(response) {
-            console.log(response.data)
-            document.getElementById("leaderboard_info").innerHTML = response.data[0].roll_no;
-        })
+        window.setInterval(() => {
+            axios
+            .get("/getData")
+            .then(function(response) {
+                console.log(response.data);
+                document.getElementById("leaderboard_info").innerHTML = response.data.data[0].roll_no;
+                // response.data[i].fieldname
+            })
+        }, 1000)
 </script>
 </html>
