@@ -1,5 +1,5 @@
 # CSES-Leaderboard
 A leaderboard for CSES Fresher Events
 
-Developed by Chetan Kar and Shubham Pahilwani
+Developed by Chetan Kar and Shubham Pahilwani<br>
 CSES Dev Team
