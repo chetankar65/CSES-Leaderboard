@@ -37,6 +37,7 @@
                     <input type="number" id="points" name="points" placeholder="Points" min="1" max="1000">
                 </div>
                 <button type="submit" id="increase">Increase</button>
+                <button type="submit" id="clear">Clear all scores</button>
             </form>
         </div>
     </div>
@@ -169,6 +170,54 @@
                         },
                         onClick: function(){} // Callback after click
                     }).showToast();
+        }
+    })
+
+    /*Clearing part*/
+    const clearBtn = document.getElementById("clear")
+
+    clearBtn.addEventListener("click", (e) => {
+        e.preventDefault()
+        let text = "Are you sure you want to clear the scores?"
+
+        if (confirm(text) == true) {
+            axios.post("/reset_points", {})
+            .then((response) => {
+                if (response.status == 200) {
+                    Toastify({
+                        text: "Points cleared!",
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(135deg, #2b6082 0%, #8082a3 100%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
+                } 
+            })
+            .catch(function (error) {
+                if (error.response.status == 400) {
+                    Toastify({
+                        text: "Some error...",
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(98.3deg, rgb(0, 0, 0) 10.6%, rgb(255, 0, 0) 97.7%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
+                }
+            })
         }
     })
 </script>

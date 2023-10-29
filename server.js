@@ -115,6 +115,25 @@ app.get("/getData", async (req, res) => {
     res.status(200).send({data: returnedArray})
 })
 
+app.post("/reset_points", async (req, res) => {
+    const collectionRef = db.collection("students");
+
+    collectionRef.get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+        doc.ref.update({ points: 0 });
+        });
+    })
+    .then(() => {
+        console.log("Field updated in all documents.");
+        res.status(200).send("Success!")
+    })
+    .catch((error) => {
+        console.error("Error updating field:", error);
+        res.status(400).send("Error!")
+    });
+})
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
