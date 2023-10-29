@@ -34,7 +34,7 @@
                 <div class="legend"><label for="username">Add Points</label></div>
                 <div class="details">
                     <input type="text" id="username" name="name" placeholder="Roll No.">
-                    <input type="number" id="points" name="points" placeholder="Points" min="1">
+                    <input type="number" id="points" name="points" placeholder="Points" min="1" max="1000">
                 </div>
                 <button type="submit" id="increase">Increase</button>
             </form>
@@ -110,7 +110,7 @@
         const points = document.getElementById("points").value;
 
 
-        if (rno != "" && points > 0) {
+        if (rno != "" && points >= 1 && points <= 1000) {
             axios.post("/increase", {
                 name: rno,
                 points: points
@@ -152,6 +152,23 @@
                 }
             })
 
+        }
+
+        else {
+            Toastify({
+                        text: `Invalid Details`,
+                        duration: 1500,
+                        destination: "https://github.com/apvarun/toastify-js",
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(135deg, #2b6082 0%, #8082a3 100%)",
+                        },
+                        onClick: function(){} // Callback after click
+                    }).showToast();
         }
     })
 </script>
