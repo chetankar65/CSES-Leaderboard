@@ -4,24 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <link rel="stylesheet" href="/css2">
     <title>Document</title>
 </head>
 <body>
-    <p>Index</p>
-    <div id="leaderboard_info">
-
+    <div class="strip">
+        <div class="alpha">G</div>
+        <div class="alpha">L</div>
+        <div class="alpha">A</div>
+        <div class="alpha">M</div>
+        <div class="alpha">M</div>
+    </div>
+    <div class="main">
+        <div class="header">LEADERBOARD</div>
+        <div class="top-5-container">
+            <div class="top-5" id="one">1</div>
+            <div class="top-5" id="two">2</div>
+            <div class="top-5" id="three">3</div>
+            <div class="top-5" id="four">4</div>
+            <div class="top-5" id="five">5</div>
+        </div>
+    </div>
+    <div class="strip">
+        <div class="alpha">N</div>
+        <div class="alpha">I</div>
+        <div class="alpha">G</div>
+        <div class="alpha">H</div>
+        <div class="alpha">T</div>
     </div>
 </body>
 <script>
+        let i = 1;
         window.setInterval(() => {
-            axios
-            .get("/getData")
-            .then(function(response) {
-                console.log(response.data);
-                document.getElementById("leaderboard_info").innerHTML = response.data.data[0].roll_no;
-                // response.data[i].fieldname
-            })
-        }, 1000)
+            if (i % 2 == 1) {
+                axios
+                .get("/getData")
+                .then(function(response) {
+                    console.log(response.data);
+                    document.getElementById("one").innerHTML = response.data.data[0].name;
+                    document.getElementById("two").innerHTML = response.data.data[1].name;
+                    document.getElementById("three").innerHTML = response.data.data[2].name;
+                    document.getElementById("four").innerHTML = response.data.data[3].name;
+                    document.getElementById("five").innerHTML = response.data.data[4].name;
+                    // response.data[i].fieldname
+                })
+            }
+            else {
+                document.getElementById("one").innerHTML = "1";
+                document.getElementById("two").innerHTML = 2;
+                document.getElementById("three").innerHTML = 3;
+                document.getElementById("four").innerHTML = 4;
+                document.getElementById("five").innerHTML = 5;
+            }
+            i++;
+        }, 4000)
 </script>
 </html>

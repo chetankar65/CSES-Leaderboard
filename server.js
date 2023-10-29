@@ -32,6 +32,10 @@ app.get("/css", (req, res) => {
     res.sendFile(__dirname + "/styles.css")
 })
 
+app.get("/css2", (req, res) => {
+    res.sendFile(__dirname + "/styles2.css")
+})
+
 app.get("/firebase", (req, res) => {
     res.sendFile(__dirname + "/firebase.js")
 })

@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    gap: 12em;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+}
+
+.strip {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-family: "Roboto Slab";
+    min-width: 90px;
+    font-size: 50px;
+    font-weight: bold;
+    align-self: stretch;
+    background-image: url("/black_pattern");
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.strip:hover {
+    background-image: url("/design");
+    color: black;    
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    margin-bottom: 20px;
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 40px;
+    font-weight: bolder;
+    border-radius: 4px;
+    background-image: url("/design");
+    padding: 24px 24px 16px 24px;
+    text-shadow: rgb(42, 42, 39) 1px 0 6px;
+    box-shadow: 12px 13px 2px black;
+}
+
+.top-5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    padding: 10px;
+    font-family: "Ubuntu Mono";
+    height: 70px;
+    width: 200px;
+    border-radius: 1em;
+    background-image: url("/black_pattern");
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.top-5-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
