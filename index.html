@@ -18,11 +18,21 @@
     <div class="main">
         <div class="header">LEADERBOARD</div>
         <div class="top-5-container">
-            <div class="top-5" id="one">1</div>
-            <div class="top-5" id="two">2</div>
-            <div class="top-5" id="three">3</div>
-            <div class="top-5" id="four">4</div>
-            <div class="top-5" id="five">5</div>
+            <div class="top-5">
+                <p id="one">1</p>
+            </div>
+            <div class="top-5">
+                <p id="two">2</p>
+            </div>
+            <div class="top-5">
+                <p id="three">3</p>
+            </div>
+            <div class="top-5">
+                <p id="four">4</p>
+            </div>
+            <div class="top-5">
+                <p id="five">5</p>
+            </div>
         </div>
     </div>
     <div class="strip">
@@ -40,20 +50,38 @@
                 axios
                 .get("/getData")
                 .then(function(response) {
-                    console.log(response.data);
-                    document.getElementById("one").innerHTML = response.data.data[0].name + "<br>" + response.data.data[0].points + " points";
-                    document.getElementById("two").innerHTML = response.data.data[1].name;
-                    document.getElementById("three").innerHTML = response.data.data[2].name;
-                    document.getElementById("four").innerHTML = response.data.data[3].name;
-                    document.getElementById("five").innerHTML = response.data.data[4].name;
+                    //console.log(response.data);
+                    document.getElementById("one").style.fontSize = "20px"
+                    document.getElementById("one").innerHTML = response.data.data[0].name + " - " + response.data.data[0].points + " points";
+                    
+                    document.getElementById("two").style.fontSize = "20px"
+                    document.getElementById("two").innerHTML = response.data.data[1].name + " - " + response.data.data[1].points + " points";
+                    
+                    document.getElementById("three").style.fontSize = "20px"
+                    document.getElementById("three").innerHTML = response.data.data[2].name + " - " + response.data.data[2].points + " points";
+                    
+                    document.getElementById("four").style.fontSize = "20px"
+                    document.getElementById("four").innerHTML = response.data.data[3].name + " - " + response.data.data[3].points + " points";
+                    
+                    document.getElementById("five").style.fontSize = "20px"
+                    document.getElementById("five").innerHTML = response.data.data[4].name + " - " + response.data.data[4].points + " points";
                     // response.data[i].fieldname
                 })
             }
             else {
+                document.getElementById("one").style.fontSize = "28px"
                 document.getElementById("one").innerHTML = "1";
+
+                document.getElementById("two").style.fontSize = "28px"
                 document.getElementById("two").innerHTML = 2;
+                
+                document.getElementById("three").style.fontSize = "28px"
                 document.getElementById("three").innerHTML = 3;
+                
+                document.getElementById("four").style.fontSize = "28px"
                 document.getElementById("four").innerHTML = 4;
+                
+                document.getElementById("five").style.fontSize = "28px"
                 document.getElementById("five").innerHTML = 5;
             }
             i++;
