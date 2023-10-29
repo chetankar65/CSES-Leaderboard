@@ -109,7 +109,7 @@ app.get("/getData", async (req, res) => {
     })
 
     
-    res.status(200).send(returnedArray)
+    res.status(200).send({data: returnedArray})
 })
 
 

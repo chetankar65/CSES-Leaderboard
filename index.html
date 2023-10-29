@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <title>Document</title>
 </head>
 <body>
     <p>Index</p>
+    <div id="leaderboard_info">
+
+    </div>
 </body>
+<script>
+    axios
+        .get("/getData")
+        .then(function(response) {
+            console.log(response.data)
+            document.getElementById("leaderboard_info").innerHTML = response.data[0].roll_no;
+        })
+</script>
 </html>
