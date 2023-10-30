@@ -39,6 +39,10 @@ app.get("/css2", (req, res) => {
     res.sendFile(__dirname + "/styles2.css")
 })
 
+app.get("/scripts", (req, res) => {
+    res.sendFile(__dirname + "/script.js")
+})
+
 app.get("/firebase", (req, res) => {
     res.sendFile(__dirname + "/firebase.js")
 })
@@ -93,11 +97,13 @@ app.post("/increase", async (req, res) => {
 
         newDocRef.set(object)
             .then(() => {
+
                 res.status(200).send("Success!")
+
             })
             .catch(error => {
                 res.status(500).send("Error")
-        });
+            });
     } else {
         res.status(400).send("Invalid argument!")
     }
@@ -174,11 +180,12 @@ http.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
-// adding socket functionality
+// open socket connection
 io.on('connection', (socket) => {
-    console.log('A user connected');
 
-    socket.on('updateLeaderboard', async () => {
+    // for the first time
+    socket.on('dataFirstTime', async () => {
+        const studentsRef = db.collection("students");
         const snapshot = await studentsRef.orderBy('points', 'desc').get();
         let returnedArray = [];
 
@@ -186,10 +193,22 @@ io.on('connection', (socket) => {
             returnedArray.push(doc.data());
         });
 
-        io.emit('dataUpdated', { data: returnedArray });
+        io.emit('displayLeaderboard', { data: returnedArray });
+    });
+
+    socket.on('dataUpdate', async () => {
+        const studentsRef = db.collection("students");
+        const snapshot = await studentsRef.orderBy('points', 'desc').get();
+        let returnedArray = [];
+
+        snapshot.forEach(doc => {
+            returnedArray.push(doc.data());
+        });
+
+        io.emit('displayLeaderboard', { data: returnedArray });
     });
 
     socket.on('disconnect', () => {
-        console.log('A user disconnected');
     });
 });
+
