@@ -19,19 +19,24 @@
         <div class="header">LEADERBOARD</div>
         <div class="top-5-container">
             <div class="top-5">
-                <p id="one">1</p>
+                <p id="one" class="large-text">1</p>
+                <p id="one-text"></p>
             </div>
             <div class="top-5">
-                <p id="two">2</p>
+                <p id="two" class="large-text">2</p>
+                <p id="two-text"></p>
             </div>
             <div class="top-5">
-                <p id="three">3</p>
+                <p id="three" class="large-text">3</p>
+                <p id="three-text"></p>
             </div>
             <div class="top-5">
-                <p id="four">4</p>
+                <p id="four" class="large-text">4</p>
+                <p id="four-text"></p>
             </div>
             <div class="top-5">
-                <p id="five">5</p>
+                <p id="five" class="large-text">5</p>
+                <p id="five-text"></p>
             </div>
         </div>
     </div>
@@ -52,38 +57,51 @@
                 .get("/getData")
                 .then(function(response) {
                     //console.log(response.data);
-                    document.getElementById("one").style.fontSize = "20px"
-                    document.getElementById("one").innerHTML = response.data.data[0].name + " - " + response.data.data[0].points + " points";
-                    
-                    document.getElementById("two").style.fontSize = "20px"
-                    document.getElementById("two").innerHTML = response.data.data[1].name + " - " + response.data.data[1].points + " points";
-                    
-                    document.getElementById("three").style.fontSize = "20px"
-                    document.getElementById("three").innerHTML = response.data.data[2].name + " - " + response.data.data[2].points + " points";
-                    
-                    document.getElementById("four").style.fontSize = "20px"
-                    document.getElementById("four").innerHTML = response.data.data[3].name + " - " + response.data.data[3].points + " points";
-                    
-                    document.getElementById("five").style.fontSize = "20px"
-                    document.getElementById("five").innerHTML = response.data.data[4].name + " - " + response.data.data[4].points + " points";
+                    Array.from(document.getElementsByClassName("top-5")).forEach((box) => {
+                        box.childNodes[1].classList.remove("large-text");
+                        box.childNodes[1].classList.add("medium-text");
+                        box.childNodes[3].classList.add("small-text");
+                    })
+
+                    document.getElementById("one").innerHTML = '';
+                    document.getElementById("two").innerHTML = '';
+                    document.getElementById("three").innerHTML = '';
+                    document.getElementById("four").innerHTML = '';
+                    document.getElementById("five").innerHTML = '';
+
+                    try {
+                    document.getElementById("one").innerHTML = response.data.data[0].name;
+                    document.getElementById("two").innerHTML = response.data.data[1].name;
+                    document.getElementById("three").innerHTML = response.data.data[2].name;
+                    document.getElementById("four").innerHTML = response.data.data[3].name;
+                    document.getElementById("five").innerHTML = response.data.data[4].name;
+                    } catch(e){}
                     // response.data[i].fieldname
+                    document.getElementById("one-text").innerHTML = response.data.data[0].points + " Points";
+                    document.getElementById("two-text").innerHTML = response.data.data[1].points + " Points";
+                    document.getElementById("three-text").innerHTML = response.data.data[2].points + " Points";
+                    document.getElementById("four-text").innerHTML = response.data.data[3].points + " Points";
+                    document.getElementById("five-text").innerHTML = response.data.data[4].points + " Points";
                 })
             }
             else {
-                document.getElementById("one").style.fontSize = "28px"
-                document.getElementById("one").innerHTML = "1";
+                Array.from(document.getElementsByClassName("top-5")).forEach((box) => {
+                    box.childNodes[1].classList.remove("medium-text");
+                    box.childNodes[3].classList.remove("small-text");
+                    box.childNodes[1].classList.add("large-text");
+                })
 
-                document.getElementById("two").style.fontSize = "28px"
+                document.getElementById("one").innerHTML = 1;
                 document.getElementById("two").innerHTML = 2;
-                
-                document.getElementById("three").style.fontSize = "28px"
                 document.getElementById("three").innerHTML = 3;
-                
-                document.getElementById("four").style.fontSize = "28px"
                 document.getElementById("four").innerHTML = 4;
-                
-                document.getElementById("five").style.fontSize = "28px"
                 document.getElementById("five").innerHTML = 5;
+
+                document.getElementById("one-text").innerHTML = '';
+                document.getElementById("two-text").innerHTML = '';
+                document.getElementById("three-text").innerHTML = '';
+                document.getElementById("four-text").innerHTML = '';
+                document.getElementById("five-text").innerHTML = '';
             }
             i++;
         }, 4000)

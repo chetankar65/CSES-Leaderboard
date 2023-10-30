@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    margin: 0;
+    margin: 0px;
     height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -45,7 +45,7 @@ body {
 }
 
 .header {
-    margin-bottom: 20px;
+    margin-bottom: 1px;
     font-family: "Press Start 2P", sans-serif;
     font-size: 40px;
     font-weight: bolder;
@@ -57,16 +57,16 @@ body {
 }
 
 .top-5 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     color: white;
-    font-size: 28px;
-    padding: 10px;
+    font-size: 36px;
+    padding: 14px;
+    line-height: 1px;
+    text-align: center;
     font-family: "Ubuntu Mono";
     height: 70px;
     width: 200px;
-    border-radius: 1em;
+    border-radius: 10px;
     background-image: url("/black_pattern");
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
@@ -80,4 +80,18 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+}
+
+.large-text {
+    color: white;
+    text-shadow: 2px 2px 20px white;
+    font-size: 38px;
+}
+
+.small-text {
+    font-size: 20px;
+}
+
+.medium-text {
+    font-size: 24px;
 }
