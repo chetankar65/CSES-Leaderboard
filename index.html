@@ -61,11 +61,20 @@
                         box.childNodes[1].classList.add("medium-text");
                         box.childNodes[3].classList.add("small-text");
                     })
+
+                    document.getElementById("one").innerHTML = '';
+                    document.getElementById("two").innerHTML = '';
+                    document.getElementById("three").innerHTML = '';
+                    document.getElementById("four").innerHTML = '';
+                    document.getElementById("five").innerHTML = '';
+
+                    try {
                     document.getElementById("one").innerHTML = response.data.data[0].name;
                     document.getElementById("two").innerHTML = response.data.data[1].name;
                     document.getElementById("three").innerHTML = response.data.data[2].name;
                     document.getElementById("four").innerHTML = response.data.data[3].name;
                     document.getElementById("five").innerHTML = response.data.data[4].name;
+                    } catch(e){}
                     // response.data[i].fieldname
                     document.getElementById("one-text").innerHTML = response.data.data[0].points + " Points";
                     document.getElementById("two-text").innerHTML = response.data.data[1].points + " Points";
