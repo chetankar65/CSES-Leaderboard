@@ -1,5 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const app = express();
+
+var http = require("http").createServer(app);
+
+var io = require("socket.io")(http);
 
 const admin = require("firebase-admin");
 
@@ -11,7 +16,6 @@ admin.initializeApp({
 
 // Initialize Firestore
 const db = admin.firestore();
-const app = express();
 app.use(express.json());
 
 
@@ -100,6 +104,36 @@ app.post("/increase", async (req, res) => {
 
 })
 
+app.post("/decrease", async (req, res) => {
+    const points = req.body.points;
+    var roll_no = req.body.name;
+    roll_no = roll_no.toUpperCase();
+
+    const newDocRef = db.collection("students").doc(roll_no);
+    const doc = await newDocRef.get(); 
+
+    if (doc.data() != undefined) {
+        var current_points = doc.data().points;
+        current_points -= Number(points);
+
+        const object = {
+            name: doc.data().name,
+            roll_no: doc.data().roll_no,
+            points: current_points
+        }
+
+        newDocRef.set(object)
+            .then(() => {
+                res.status(200).send("Success!")
+            })
+            .catch(error => {
+                res.status(500).send("Error")
+        });
+    } else {
+        res.status(400).send("Invalid argument!")
+    }
+})
+
 app.get("/getData", async (req, res) => {
     const studentsRef = db.collection("students");
     const snapshot = await studentsRef.orderBy('points', 'desc').get()
@@ -136,6 +170,26 @@ app.post("/reset_points", async (req, res) => {
 
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
+});
+
+// adding socket functionality
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('updateLeaderboard', async () => {
+        const snapshot = await studentsRef.orderBy('points', 'desc').get();
+        let returnedArray = [];
+
+        snapshot.forEach(doc => {
+            returnedArray.push(doc.data());
+        });
+
+        io.emit('dataUpdated', { data: returnedArray });
+    });
+
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
 });
