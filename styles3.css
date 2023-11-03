@@ -10,29 +10,22 @@ body {
 }
 
 .container {
-    border-radius: 12px;
+    padding: 0px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 0px 0px;
+    gap: 5px 5px;
 }
     
 .container > div {   
     padding: 5px; 
     height: 40px;
     background-color:rgba(240, 248, 255, 0.497);
-    border: 1px solid black;
-}
-
-.container > div:first-child {
-    border-top-left-radius: 12px;
-}
-
-.container > div:last-child {
-    border-bottom-right-radius: 12px;
+    border: 1px solid grey;
 }
 
 .box {
     display: flex;
+    border-radius: 10px;
     justify-content: space-between;
     gap: 12px;
     align-items: center;
