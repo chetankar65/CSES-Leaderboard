@@ -40,11 +40,12 @@ body {
     text-overflow: ellipsis;
 }
 
-.serial, .points {
+.points {
     font-size: 18px;
 }
 
 .serial {
+    font-size: 20px;
     font-weight: bold;
 }
 
