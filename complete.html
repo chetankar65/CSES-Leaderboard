@@ -23,8 +23,11 @@
                 const newChild = document.createElement('div')
                 newChild.classList.add('box')
                 const serialNo = document.createElement('div')
+                serialNo.classList.add('serial')
                 const name = document.createElement('div')
+                name.classList.add('name')
                 const points = document.createElement('div')
+                points.classList.add('points')
                 console.log(response.data.data[i])
                 serialNo.innerHTML = response.data.data[i].roll_no
                 name.innerHTML = response.data.data[i].name
