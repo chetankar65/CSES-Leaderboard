@@ -56,7 +56,12 @@ body {
     box-shadow: 12px 13px 2px black;
 }
 
-.top-5 {
+.top-5-parent-container {
+    display: flex;
+    gap: 24px;
+}
+
+.top-5, .top-5-2 {
     flex-direction: column;
     color: white;
     font-size: 36px;
@@ -71,7 +76,7 @@ body {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-.top-5:hover {
+.top-5:hover, .top-5-2:hover {
     transform: scale(1.1);
     transition: 0.3s;
 }
