@@ -44,6 +44,7 @@ body {
 }
 
 .header {
+    margin-top: -30px;
     margin-bottom: 20px;
     font-family: "Roboto Slab";
     font-size: 50px;
