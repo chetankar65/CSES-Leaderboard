@@ -25,8 +25,7 @@
                 const serialNo = document.createElement('div')
                 const name = document.createElement('div')
                 const points = document.createElement('div')
-                console.log(response.data.data[i])
-                serialNo.innerHTML = response.data.data[i].roll_no
+                serialNo.innerHTML = i + 1
                 name.innerHTML = response.data.data[i].name
                 points.innerHTML = response.data.data[i].points1
                 newChild.appendChild(serialNo)
