@@ -39,7 +39,7 @@
                         <input type="number" id="points" name="points" placeholder="Points" min="1" max="1000">
                         <!-- <input type="number" id="points2" name="points2" placeholder="Points2" value="0" min="1" max="1000"> -->
                     </div>
-                    <button type="submit" id="increase">Increase</button>
+                    <button type="submit" id="increase1">Increase</button>
                 </form>
             </div>
             <div class="container">
@@ -47,11 +47,11 @@
                     <div class="legend"><label for="username">Add Points</label>
                     <div class="yes">•Slinko</div></div>
                     <div class="details">
-                        <input type="text" id="username2" name="name" placeholder="Roll No.">
+                        <input type="text" id="username2" name="name2" placeholder="Roll No.">
                         <input type="number" id="points2" name="points2" placeholder="Points" min="1" max="1000">
                         <!-- <input type="number" id="points2" name="points2" placeholder="Points2" value="0" min="1" max="1000"> -->
                     </div>
-                    <button type="submit" id="increase">Increase</button>
+                    <button type="submit" id="increase2">Increase</button>
                 </form>
             </div>
         </div>
@@ -86,6 +86,8 @@
             .then((response) => {
                 //console.log("Success")
                 if (response.status == 200) {
+                    document.getElementById("name").value = "";
+                    document.getElementById("rno").value = "";
                     socket.emit("dataUpdate", false);
                     Toastify({
                         text: "Participant Registered!",
@@ -101,6 +103,7 @@
                         },
                         onClick: function(){} // Callback after click
                     }).showToast();
+                    socket.emit("dataUpdate2", false);
                 } else {
                     Toastify({
                         text: "Some Issue!",
@@ -123,7 +126,7 @@
     ///////////
 
     /*Adding part*/
-    const increaseBtn = document.getElementById("increase")
+    const increaseBtn = document.getElementById("increase1")
 
     increaseBtn.addEventListener("click", (e) => {
         e.preventDefault()
@@ -132,12 +135,14 @@
 
 
         if (rno != "" && points >= 1 && points <= 1000) {
-            axios.post("/increase", {
+            axios.post("/increaseGame1", {
                 name: rno,
-                points: points
+                points1: points
             })
             .then((response) => {
                 if (response.status == 200) {
+                    document.getElementById("username").value = "";
+                    document.getElementById("points").value = "";
                     socket.emit("dataUpdate", false);
                     Toastify({
                         text: `${points} Points Added!`,
@@ -194,20 +199,27 @@
         }
     })
 
-    /*Clearing part*/
-    const clearBtn = document.getElementById("clear")
+    /////////////////////////////////// FOR SECOND GAME
+    const increaseBtn2 = document.getElementById("increase2")
 
-    clearBtn.addEventListener("click", (e) => {
+    increaseBtn2.addEventListener("click", (e) => {
         e.preventDefault()
-        let text = "Are you sure you want to clear the scores?"
+        const rno = document.getElementById("username2").value;
+        const points = document.getElementById("points2").value;
 
-        if (confirm(text) == true) {
-            axios.post("/reset_points", {})
+
+        if (rno != "" && points >= 1 && points <= 1000) {
+            axios.post("/increaseGame2", {
+                name: rno,
+                points2: points
+            })
             .then((response) => {
                 if (response.status == 200) {
-                    socket.emit("dataUpdate", false);
+                    socket.emit("dataUpdate2", false);
+                    document.getElementById("username2").value = "";
+                    document.getElementById("points2").value = "";
                     Toastify({
-                        text: "Points cleared!",
+                        text: `${points} Points Added!`,
                         duration: 1500,
                         destination: "https://github.com/apvarun/toastify-js",
                         newWindow: true,
@@ -225,7 +237,7 @@
             .catch(function (error) {
                 if (error.response.status == 400) {
                     Toastify({
-                        text: "Some error...",
+                        text: "Participant Not Registered",
                         duration: 1500,
                         destination: "https://github.com/apvarun/toastify-js",
                         newWindow: true,
@@ -240,7 +252,26 @@
                     }).showToast();
                 }
             })
+
+        }
+
+        else {
+            Toastify({
+                text: `Invalid Details`,
+                duration: 1500,
+                destination: "https://github.com/apvarun/toastify-js",
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(135deg, #2b6082 0%, #8082a3 100%)",
+                },
+                onClick: function(){} // Callback after click
+            }).showToast();
         }
     })
+
 </script>
 </html>

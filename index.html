@@ -75,66 +75,10 @@
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
 
 <script>
-    /*
-         let i = 1;
-        window.setInterval(() => {
-            if (i % 2 == 1) {
-                axios
-                .get("/getData")
-                .then(function(response) {
-                    //console.log(response.data);
-                    Array.from(document.getElementsByClassName("top-5")).forEach((box) => {
-                        box.childNodes[1].classList.remove("large-text");
-                        box.childNodes[1].classList.add("medium-text");
-                        box.childNodes[3].classList.add("small-text");
-                    })
-
-                    document.getElementById("one").innerHTML = '';
-                    document.getElementById("two").innerHTML = '';
-                    document.getElementById("three").innerHTML = '';
-                    document.getElementById("four").innerHTML = '';
-                    document.getElementById("five").innerHTML = '';
-
-                    try {
-                    document.getElementById("one").innerHTML = response.data.data[0].name;
-                    document.getElementById("two").innerHTML = response.data.data[1].name;
-                    document.getElementById("three").innerHTML = response.data.data[2].name;
-                    document.getElementById("four").innerHTML = response.data.data[3].name;
-                    document.getElementById("five").innerHTML = response.data.data[4].name;
-                    } catch(e){}
-                    // response.data[i].fieldname
-                    document.getElementById("one-text").innerHTML = response.data.data[0].points + " Points";
-                    document.getElementById("two-text").innerHTML = response.data.data[1].points + " Points";
-                    document.getElementById("three-text").innerHTML = response.data.data[2].points + " Points";
-                    document.getElementById("four-text").innerHTML = response.data.data[3].points + " Points";
-                    document.getElementById("five-text").innerHTML = response.data.data[4].points + " Points";
-                })
-            }
-            else {
-                Array.from(document.getElementsByClassName("top-5")).forEach((box) => {
-                    box.childNodes[1].classList.remove("medium-text");
-                    box.childNodes[3].classList.remove("small-text");
-                    box.childNodes[1].classList.add("large-text");
-                })
-
-                document.getElementById("one").innerHTML = 1;
-                document.getElementById("two").innerHTML = 2;
-                document.getElementById("three").innerHTML = 3;
-                document.getElementById("four").innerHTML = 4;
-                document.getElementById("five").innerHTML = 5;
-
-                document.getElementById("one-text").innerHTML = '';
-                document.getElementById("two-text").innerHTML = '';
-                document.getElementById("three-text").innerHTML = '';
-                document.getElementById("four-text").innerHTML = '';
-                document.getElementById("five-text").innerHTML = '';
-            }
-            i++;
-        }, 4000)
-    */
     const socket = io();
 
     socket.emit("dataFirstTime", false);
+    socket.emit("dataFirstTime2", false);
 
     socket.on("displayLeaderboard", function( response ) {
         Array.from(document.getElementsByClassName("top-5")).forEach((box) => {
@@ -157,11 +101,39 @@
             document.getElementById("five").innerHTML = response.data[4].name;
         } catch(e){}
                 // response.data[i].fieldname
-            document.getElementById("one-text").innerHTML = response.data[0].points + " Points";
-            document.getElementById("two-text").innerHTML = response.data[1].points + " Points";
-            document.getElementById("three-text").innerHTML = response.data[2].points + " Points";
-            document.getElementById("four-text").innerHTML = response.data[3].points + " Points";
-            document.getElementById("five-text").innerHTML = response.data[4].points + " Points";
+            document.getElementById("one-text").innerHTML = response.data[0].points1 + " Points";
+            document.getElementById("two-text").innerHTML = response.data[1].points1 + " Points";
+            document.getElementById("three-text").innerHTML = response.data[2].points1 + " Points";
+            document.getElementById("four-text").innerHTML = response.data[3].points1 + " Points";
+            document.getElementById("five-text").innerHTML = response.data[4].points1 + " Points";
+    });
+
+    socket.on("displayLeaderboard2", function( response ) {
+        Array.from(document.getElementsByClassName("top-5-2")).forEach((box) => {
+            box.childNodes[1].classList.remove("large-text");
+            box.childNodes[1].classList.add("medium-text");
+            box.childNodes[3].classList.add("small-text");
+        })
+
+        document.getElementById("one-2-2").innerHTML = '';
+        document.getElementById("two-2-2").innerHTML = '';
+        document.getElementById("three-2").innerHTML = '';
+        document.getElementById("four-2").innerHTML = '';
+        document.getElementById("five-2").innerHTML = '';
+
+        try {
+            document.getElementById("one-2-2").innerHTML = response.data[0].name;
+            document.getElementById("two-2-2").innerHTML = response.data[1].name;
+            document.getElementById("three-2").innerHTML = response.data[2].name;
+            document.getElementById("four-2").innerHTML = response.data[3].name;
+            document.getElementById("five-2").innerHTML = response.data[4].name;
+        } catch(e){}
+                // response.data[i].fieldname
+            document.getElementById("one-text-2").innerHTML = response.data[0].points2 + " Points";
+            document.getElementById("two-text-2").innerHTML = response.data[1].points2 + " Points";
+            document.getElementById("three-text-2").innerHTML = response.data[2].points2 + " Points";
+            document.getElementById("four-text-2").innerHTML = response.data[3].points2 + " Points";
+            document.getElementById("five-text-2").innerHTML = response.data[4].points2 + " Points";
     });
 </script>
 </html>
