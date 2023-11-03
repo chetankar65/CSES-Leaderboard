@@ -29,6 +29,14 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get("/speedstack", (req, res) => {
+    res.sendFile(__dirname + '/complete.html');
+})
+
+app.get("/slinko", (req, res) => {
+    res.sendFile(__dirname + '/complete2.html');
+})
+
 app.get("/k0yok4", (req, res) => {
     res.sendFile(__dirname + '/admin.html');
 });
@@ -39,6 +47,10 @@ app.get("/css", (req, res) => {
 
 app.get("/css2", (req, res) => {
     res.sendFile(__dirname + "/styles2.css")
+})
+
+app.get("/css3", (req, res) => {
+    res.sendFile(__dirname + "/styles3.css")
 })
 
 app.get("/scripts", (req, res) => {
@@ -112,39 +124,6 @@ app.post("/increaseGame1", async (req, res) => {
     }
 })
 
-app.post("/decreaseGame1", async (req, res) => {
-    const points = req.body.points1;
-    var roll_no = req.body.name;
-    roll_no = roll_no.toUpperCase();
-
-    const newDocRef = db.collection("students").doc(roll_no);
-    const doc = await newDocRef.get(); 
-
-    if (doc.data() != undefined) {
-        var current_points = doc.data().points1;
-        var current_points_2 = doc.data().points2;
-        current_points -= Number(points);
-
-        const object = {
-            name: doc.data().name,
-            roll_no: doc.data().roll_no,
-            points1: current_points,
-            points2: current_points_2
-        }
-
-        newDocRef.set(object)
-            .then(() => {
-                res.status(200).send("Success!")
-            })
-            .catch(error => {
-                res.status(500).send("Error")
-        });
-    } else {
-        res.status(400).send("Invalid argument!")
-    }
-})
-///////////////
-
 /////////////////////// GAME 2 BACKEND CODE
 app.post("/increaseGame2", async (req, res) => {
     const points = req.body.points2;
@@ -178,70 +157,7 @@ app.post("/increaseGame2", async (req, res) => {
     }
 })
 
-app.post("/decreaseGame2", async (req, res) => {
-    const points = req.body.points2;
-    var roll_no = req.body.name;
-    roll_no = roll_no.toUpperCase();
-
-    const newDocRef = db.collection("students").doc(roll_no);
-    const doc = await newDocRef.get(); 
-
-    if (doc.data() != undefined) {
-        var current_points = doc.data().points2;
-        let current_points_1 = doc.data().points1; 
-        current_points -= Number(points);
-
-        const object = {
-            name: doc.data().name,
-            roll_no: doc.data().roll_no,
-            points1: current_points_1,
-            point2: current_points
-        }
-
-        newDocRef.set(object)
-            .then(() => {
-                res.status(200).send("Success!")
-            })
-            .catch(error => {
-                res.status(500).send("Error")
-        });
-    } else {
-        res.status(400).send("Invalid argument!")
-    }
-})
-
 ///////////////////
-
-///////// GETTING DATA for the two games
-app.get("/getDataGame1", async (req, res) => {
-    const studentsRef = db.collection("students");
-    const snapshot = await studentsRef.orderBy('points1', 'desc').get()
-
-    let returnedArray = [];
-
-    snapshot.forEach(doc => {
-        //console.log(doc.id, '=>', doc.data())
-        returnedArray.push(doc.data());
-    })
-
-    
-    res.status(200).send({data: returnedArray})
-})
-
-app.get("/getDataGame2", async (req, res) => {
-    const studentsRef = db.collection("students");
-    const snapshot = await studentsRef.orderBy('points2', 'desc').get()
-
-    let returnedArray = [];
-
-    snapshot.forEach(doc => {
-        //console.log(doc.id, '=>', doc.data())
-        returnedArray.push(doc.data());
-    })
-
-    
-    res.status(200).send({data: returnedArray})
-})
 
 /// get the full leaderbpard
 app.get("/fullLeaderboardGame1", async (req, res) => {
@@ -271,26 +187,6 @@ app.get("/fullLeaderboardGame2", async (req, res) => {
 })
 
 //////////// Full leaderboard section
-
-app.post("/reset_points", async (req, res) => {
-    const collectionRef = db.collection("students");
-
-    collectionRef.get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-        doc.ref.update({ points: 0 });
-        });
-    })
-    .then(() => {
-        console.log("Field updated in all documents.");
-        res.status(200).send("Success!")
-    })
-    .catch((error) => {
-        console.error("Error updating field:", error);
-        res.status(400).send("Error!")
-    });
-})
-
 
 const PORT = process.env.PORT || 8080;
 http.listen(PORT, () => {

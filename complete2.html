@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="./styles3.css">
+    <link rel="stylesheet" href="/css3">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="container" id="container">
@@ -12,23 +13,28 @@
     </div>
 
     <script>
-        let n = 200
-        let cont = document.getElementById("container")
-        for (let i = 0; i < n; i++) {
-            const newChild = document.createElement('div')
-            newChild.classList.add('box')
-            const serialNo = document.createElement('div')
-            const name = document.createElement('div')
-            const points = document.createElement('div')
-            serialNo.innerHTML = i
-            name.innerHTML = "Dummy"
-            if (i == 3) name.innerHTML = "Mohammed Hussain Allahukabar yatabab Wadallah"
-            points.innerHTML = 500
-            newChild.appendChild(serialNo)
-            newChild.appendChild(name)
-            newChild.appendChild(points)
-            cont.appendChild(newChild)
-        }
+        axios
+        .get("/fullLeaderboardGame2")
+        .then(function (response) {
+            console.log(response.data.data.length)
+            let n = response.data.data.length;
+            let cont = document.getElementById("container")
+            for (let i = 0; i < n; i++) {
+                const newChild = document.createElement('div')
+                newChild.classList.add('box')
+                const serialNo = document.createElement('div')
+                const name = document.createElement('div')
+                const points = document.createElement('div')
+                console.log(response.data.data[i])
+                serialNo.innerHTML = response.data.data[i].roll_no
+                name.innerHTML = response.data.data[i].name
+                points.innerHTML = response.data.data[i].points2
+                newChild.appendChild(serialNo)
+                newChild.appendChild(name)
+                newChild.appendChild(points)
+                cont.appendChild(newChild)
+            }
+        });
     </script>
 </body>
 </html>
