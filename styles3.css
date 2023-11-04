@@ -26,7 +26,7 @@ body {
     font-family: "Ubuntu Mono", sans-serif;
     padding: 0px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 8px 8px;
 }
     
@@ -47,7 +47,7 @@ body {
 }
 
 .box > *{
-    max-width: 100px;
+    max-width: max(70px, 50%);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

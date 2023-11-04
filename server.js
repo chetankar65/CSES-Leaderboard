@@ -41,6 +41,10 @@ app.get("/k0yok4", (req, res) => {
     res.sendFile(__dirname + '/admin.html');
 });
 
+app.get("/list", (req, res) => {
+    res.sendFile(__dirname + '/complete3.html');
+});
+
 app.get("/css", (req, res) => {
     res.sendFile(__dirname + "/styles.css")
 })

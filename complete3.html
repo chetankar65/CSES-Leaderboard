@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin|List</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        .box {
+            display: flex;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">List Of Students</div>
+    <div class="container" id="container">
+        
+    </div>
+
+    <script>
+        axios
+        .get("/fullLeaderboardGame2")
+        .then(function (response) {
+            console.log(response.data.data.length)
+            let n = response.data.data.length;
+            let cont = document.getElementById("container")
+            for (let i = 0; i < n; i++) {
+                const newChild = document.createElement('div')
+                newChild.classList.add('box')
+                const serialNo = document.createElement('div')
+                serialNo.classList.add('serial')
+                const name = document.createElement('div')
+                name.classList.add('name')
+                serialNo.innerHTML = response.data.data[i].roll_no
+                name.innerHTML = response.data.data[i].name
+                newChild.appendChild(serialNo)
+                newChild.appendChild(name)
+                cont.appendChild(newChild)
+            }
+        });
+    </script>
+</body>
+</html>
