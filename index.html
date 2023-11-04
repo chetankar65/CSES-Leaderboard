@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/css2">
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
     <title>CSES Leaderboard</title>
 </head>
 <body>
@@ -15,6 +18,11 @@
         <div class="alpha">M</div>
         <div class="alpha">M</div>
     </div>
+    <div class="qr-container">
+        <div class="game">SpeedStack</div>
+        <div id="qrcode"></div>
+    </div>
+    
     <div class="main">
         <div class="header">LEADERBOARD</div>
         <div class="top-5-parent-container">
@@ -64,6 +72,11 @@
             </div>
         </div>
     </div>
+
+    <div class="qr-container">
+        <div class="game">Slinko</div>
+        <div id="qrcode2"></div>
+    </div>
     <div class="strip">
         <div class="alpha">N</div>
         <div class="alpha">I</div>
@@ -73,7 +86,12 @@
     </div>
 </body>
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
-
+<script>
+    var qrcode = new QRCode("qrcode",
+    "https://csesleaderboard.onrender.com/speedstack");
+    var qrcode2 = new QRCode("qrcode2",
+    "https://csesleaderboard.onrender.com/slinko");
+</script>
 <script>
     const socket = io();
 

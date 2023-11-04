@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
 
 html {
     height: 100%;
@@ -12,7 +13,7 @@ body {
     background-attachment: fixed;
     display: flex;
     justify-content: center;
-    gap: 12em;
+    gap: 30px;
     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 }
 
@@ -35,7 +36,6 @@ body {
     background-image: url("/design");
     color: black;    
 }
-
 .main {
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@ body {
 
 .top-5-parent-container {
     display: flex;
-    gap: 24px;
+    gap: 40px;
 }
 
 .top-5, .top-5-2 {
@@ -99,4 +99,29 @@ body {
 
 .medium-text {
     font-size: 24px;
+}
+
+#qrcode, #qrcode2 {
+    background-color: rgba(255, 255, 255, 0.816);
+    padding: 18px;
+    width: min-content;
+    height: min-content;
+    border-radius: 10px;
+}
+
+.game {
+    font-family: "DM Serif Display", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(0deg, #080b0d 0%, rgb(155, 79, 193) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
 }
