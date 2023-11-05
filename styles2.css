@@ -24,7 +24,7 @@ body {
     font-size: 50px;
     font-weight: bold;
     align-self: stretch;
-    background-image: url("/black_pattern");
+    background-color: black;
     color: white;
     display: flex;
     flex-direction: column;
@@ -72,7 +72,7 @@ body {
     height: 70px;
     width: 200px;
     border-radius: 10px;
-    background-image: url("/black_pattern");
+    background-color: black;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
