@@ -63,6 +63,7 @@ body {
 
 .top-5, .top-5-2 {
     flex-direction: column;
+    gap: 1em;
     color: white;
     font-size: 36px;
     padding: 14px;
