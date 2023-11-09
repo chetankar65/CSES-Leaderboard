@@ -47,7 +47,7 @@ body {
 }
 
 .box > *{
-    max-width: max(70px, 50%);
+   
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
